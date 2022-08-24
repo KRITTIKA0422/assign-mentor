@@ -14,7 +14,21 @@ async function createConnection() {
     return client;
 }
 const client = await createConnection();
-app.get("/", function (request, response) {     //api endpoint for viewing welcome to hall booking
-    response.send("Welcome to hall booking");
+app.get("/", function (request, response) {     //api endpoint for viewing welcome to assign mentor
+    response.send("Welcome to assign mentor");
+});
+app.post("/student", async function (request, response) {
+    const data = request.body;
+    console.log(data);
+    const result = await client.db("assign-mentor").collection("student").insertMany(data);
+    console.log(result);
+    response.send(result);
+});
+app.post("/mentor", async function (request, response) {
+    const data = request.body;
+    console.log(data);
+    const result = await client.db("assign-mentor").collection("mentor").insertMany(data);
+    console.log(result);
+    response.send(result);
 });
 app.listen(PORT, () => console.log(`App started in ${PORT}`));
