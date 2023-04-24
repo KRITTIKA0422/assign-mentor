@@ -43,10 +43,7 @@ export const controller={
     get: async function (request, response) {        //api endpoint for viewing all students under a mentor
         const { id } = request.params;
         console.log(request.params, id);
-        const studentfind = await findboth(id);
-        const student= await findboth(id);
-        console.log(studentfind, student);
-        const result =[studentfind, student];
+        const result=await findboth(id);
         response.send(result);
     }
 
